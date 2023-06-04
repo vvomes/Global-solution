@@ -7,10 +7,10 @@ export default function Header() {
     <HeaderTag>
       <nav>
         <ul>
-          <li><CustomNavLink exact to="/">Home</CustomNavLink></li>
+          <li><CustomNavLink exact="true" to="/">Home</CustomNavLink></li>
           <li><CustomNavLink to="/Grafico">Grafico</CustomNavLink></li>
           <li><CustomNavLink to="/Dados">Dados</CustomNavLink></li>
-          <li><CustomNavLink to="/">Pitch</CustomNavLink></li>
+          <li><CustomNavLink to="#">Pitch</CustomNavLink></li>
           <li><CustomNavLink to="/FaleConosco">Fale Conosco</CustomNavLink></li>
         </ul>
       </nav>
