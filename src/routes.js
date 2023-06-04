@@ -4,20 +4,23 @@ import Dados from "./pages/Dados";
 import Home from "./pages/Index";
 import Grafico from "./pages/Grafico";
 import FaleConosco from "./pages/FaleConosco";
+import GlobalStyle from "./GlobalStyle";
 
 
 function AppRoutes() {
 	return (
-		<BrowserRouter>
-			<Routes>
-				<Route path="/" element={<Home />} />
-				<Route path="Dados" element={<Dados />} />
-				<Route path="Grafico" element={<Grafico />} />
-				<Route path="FaleConosco" element={<FaleConosco/>} />
-				<Route path="*" element={<NaoEncontrado />} />
-			</Routes>
-
-		</BrowserRouter>
+		<div>
+			<GlobalStyle />
+			<BrowserRouter>
+				<Routes>
+					<Route path="/" element={<Home />} />
+					<Route path="Dados" element={<Dados />} />
+					<Route path="Grafico" element={<Grafico />} />
+					<Route path="FaleConosco" element={<FaleConosco />} />
+					<Route path="*" element={<NaoEncontrado />} />
+				</Routes>
+			</BrowserRouter>
+		</div>
 	);
 }
 
