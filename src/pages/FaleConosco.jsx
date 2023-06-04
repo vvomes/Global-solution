@@ -1,5 +1,5 @@
 import Header from "../components/Index/Header";
-import Footer from "../components/Index/Footer";
+
 
 import React, { useState } from 'react';
 import styled from 'styled-components';
@@ -26,7 +26,7 @@ export default function FaleConosco() {
   };
 
   return (
-    <>
+    <div>
       <Header/>
       <FormContainer>
         <h2>Fale Conosco</h2>
@@ -82,8 +82,8 @@ export default function FaleConosco() {
           <SubmitButton type="submit">Enviar</SubmitButton>
         </Form>
       </FormContainer>
-      <Footer/>
-    </>
+  
+    </div>
   );
 }
 
