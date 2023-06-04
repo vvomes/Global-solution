@@ -22,6 +22,7 @@ const FooterContainer = styled.footer`
   bottom: 0;
   left: 0;
   width: 100%;
+
 `;
 
 const FooterContent = styled.div`
