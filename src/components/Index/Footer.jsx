@@ -5,10 +5,8 @@ export default function Footer() {
   return (
     <FooterContainer>
       <FooterContent>
-        <p>© 2023 Nome da Empresa. Todos os direitos reservados.</p>
-        <p>Endereço: 123 Rua do Exemplo, Cidade, Estado</p>
-        <p>Telefone: (00) 1234-5678</p>
-        <p>Email: exemplo@empresa.com</p>
+        <p>"Alimentando sonhos e saciando necessidades: juntos pela erradicação da fome."</p>
+        <p>© 2023 RescueFoods. Todos os direitos reservados.</p>
       </FooterContent>
     </FooterContainer>
   );
@@ -18,7 +16,7 @@ const FooterContainer = styled.footer`
   background-color: #1c3048; 
   color: #fff; 
   padding: 20px;
-  position: fixed;
+  position: relative;
   bottom: 0;
   left: 0;
   width: 100%;
