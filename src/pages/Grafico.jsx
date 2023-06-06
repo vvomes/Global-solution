@@ -25,6 +25,16 @@ const Canvas = styled.canvas`
   height: 100%;
 `;
 
+const ButtonContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+`;
+
+const Button = styled.button`
+  margin: 0 5px;
+`;
+
 const Grafico = () => {
   const chart1Ref = useRef(null);
   const chart2Ref = useRef(null);
@@ -146,10 +156,10 @@ const Grafico = () => {
     <>
       <Header />
       <Container>
-        <div>
-          <button onClick={() => handleChartChange(1)}>Gráfico 1</button>
-          <button onClick={() => handleChartChange(2)}>Gráfico 2</button>
-        </div>
+        <ButtonContainer>
+          <Button onClick={() => handleChartChange(1)}>Mundial</Button>
+          <Button onClick={() => handleChartChange(2)}>Nacional</Button>
+        </ButtonContainer>
         {data && (
           <select onChange={handleYearChange}>
             <option value="">Selecione o ano</option>
