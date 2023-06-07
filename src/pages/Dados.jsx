@@ -1,14 +1,18 @@
 import Header from "../components/Index/Header"
 import Footer from "../components/Index/Footer"
+import DadosFome from "../components/dados/DadosFome"
 
+import ConteudoFome from "../components/dados/ConteudoFome";
 
 export default function Dados() {
     return (
 
         <>
             <Header />
-            <h1>Ola você esta na pagina Dados</h1>
-            <Footer/>
+                <DadosFome />
+                <ConteudoFome />
+             
+                <Footer />
         </>
 
 
