@@ -4,6 +4,9 @@ import styled from 'styled-components';
 import Header from '../components/Index/Header';
 import Footer from '../components/Index/Footer';
 
+import mapaMundial from '../components/img/mapa-mundo.jpg';
+import mapaBrasil from '../components/img/mapa-do-brasil-hi.png';
+
 const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -18,6 +21,10 @@ const Container = styled.div`
 const ChartContainer = styled.div`
   width: 100%;
   height: 100%;
+  background-image: url(${props => props.backgroundImage});
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
 `;
 
 const Canvas = styled.canvas`
@@ -35,12 +42,23 @@ const Button = styled.button`
   margin: 0 5px;
 `;
 
+const TextContainer = styled.div`
+  margin-bottom: 20px;
+`;
+
+const Text = styled.p`
+  font-size: 16px;
+  font-weight: 500;
+  text-align: center;
+`;
+
 const Grafico = () => {
   const chart1Ref = useRef(null);
   const chart2Ref = useRef(null);
   const [data, setData] = useState(null);
   const [chartInstance, setChartInstance] = useState(null);
   const [currentChart, setCurrentChart] = useState(1);
+  const [currentText, setCurrentText] = useState('fomeMundial');
 
   useEffect(() => {
     const fetchData = async () => {
@@ -93,8 +111,8 @@ const Grafico = () => {
           {
             label: 'Índice de Países (Toneladas)',
             data: data[`indices${chartNumber}`][data.years[0]],
-            backgroundColor: 'rgba(75, 192, 192, 0.2)',
-            borderColor: 'rgba(75, 192, 192, 1)',
+            backgroundColor: 'rgba(0, 128, 0, 0.5)',
+            borderColor: '#0000FF',
             borderWidth: 1,
           },
         ],
@@ -107,11 +125,27 @@ const Grafico = () => {
             title: {
               display: true,
               text: 'Toneladas',
+              font: {
+                weight: 'bold',
+              },
+              color: '#000000',
             },
             ticks: {
               callback: function (value) {
                 return value.toLocaleString();
               },
+              font: {
+                weight: 'bold',
+              },
+              color: '#000000',
+            },
+          },
+          y: {
+            ticks: {
+              font: {
+                weight: 'bold',
+              },
+              color: '#000000',
             },
           },
         },
@@ -141,6 +175,7 @@ const Grafico = () => {
 
   const handleChartChange = (chartNumber) => {
     setCurrentChart(chartNumber);
+    setCurrentText(chartNumber === 1 ? 'fomeMundial' : 'fomeNacional');
   };
 
   const updateChart = (data, year) => {
@@ -160,23 +195,37 @@ const Grafico = () => {
           <Button onClick={() => handleChartChange(1)}>Mundial</Button>
           <Button onClick={() => handleChartChange(2)}>Nacional</Button>
         </ButtonContainer>
-        {data && (
-          <select onChange={handleYearChange}>
-            <option value="">Selecione o ano</option>
-            {data.years.map((year) => (
-              <option key={year} value={year}>
-                {year}
-              </option>
-            ))}
-          </select>
-        )}
-        <ChartContainer>
-          {currentChart === 1 ? (
-            <Canvas ref={chart1Ref}></Canvas>
-          ) : (
-            <Canvas ref={chart2Ref}></Canvas>
+        <TextContainer>
+          {currentText === 'fomeMundial' && (
+            <Text>
+              A fome mundial e o desperdício de alimentos são questões interligadas que demandam atenção urgente. Enquanto
+              milhões de pessoas enfrentam diariamente a falta de alimentos suficientes para suprir suas necessidades
+              básicas, uma quantidade alarmante de alimentos é desperdiçada ao redor do mundo. O desperdício ocorre em
+              todas as etapas da cadeia alimentar, desde a produção e colheita até o consumo final.
+            </Text>
           )}
+          {currentText === 'fomeNacional' && (
+            <Text>
+              No âmbito nacional, também enfrentamos desafios significativos em relação à fome e ao desperdício de
+              alimentos. É fundamental destacar as peculiaridades e características específicas do nosso país para
+              desenvolver soluções adequadas. Através de políticas públicas, conscientização e ações coletivas, podemos
+              combater a fome e reduzir o desperdício de alimentos em todas as regiões do Brasil.
+            </Text>
+          )}
+        </TextContainer>
+        <ChartContainer backgroundImage={currentChart === 1 ? mapaMundial : mapaBrasil}>
+          <Canvas ref={currentChart === 1 ? chart1Ref : chart2Ref}></Canvas>
         </ChartContainer>
+        <ButtonContainer>
+          <select onChange={handleYearChange}>
+            {data &&
+              data.years.map((year) => (
+                <option key={year} value={year}>
+                  {year}
+                </option>
+              ))}
+          </select>
+        </ButtonContainer>
       </Container>
       <Footer />
     </>
