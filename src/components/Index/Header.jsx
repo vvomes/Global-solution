@@ -8,10 +8,10 @@ export default function Header() {
       <nav>
         <ul>
           <li><CustomNavLink exact="true" to="/">Home</CustomNavLink></li>
-          <li><CustomNavLink to="/Grafico">Grafico</CustomNavLink></li>
-          <li><CustomNavLink to="/Dados">Dados</CustomNavLink></li>
-          <li><CustomNavLink to="#">Pitch</CustomNavLink></li>
-          <li><CustomNavLink to="/FaleConosco">Fale Conosco</CustomNavLink></li>
+          <li><CustomNavLink to="/Dados">Sobre a Fome</CustomNavLink></li>
+          <li><CustomNavLink to="/Grafico">Gráfico</CustomNavLink></li>
+          <li><CustomNavLink to="/Metas">Metas ODS</CustomNavLink></li>
+          <li><CustomNavLink to="/Solucao">Solução</CustomNavLink></li>
         </ul>
       </nav>
     </HeaderTag>
@@ -21,7 +21,7 @@ export default function Header() {
 const HeaderTag = styled.header`
   background-color: #1c3048; 
   height: 60px;
-  position: sticky;
+  position: fixed;
   top: 0;
   width: 100%;
   display: flex;
@@ -33,6 +33,7 @@ const HeaderTag = styled.header`
   nav {
     display: flex;
     align-items: center;
+    justify-content: space-between; //
   }
 
   ul {
@@ -52,6 +53,12 @@ const HeaderTag = styled.header`
       justify-content: center;
     }
 
+  @media(max-width: 800px) {
+		ul {
+           justify-content: center;
+        }
+	}
+
     li {
       margin-right: 0.5rem;
       margin-bottom: 0.5rem;
@@ -70,15 +77,18 @@ const CustomNavLink = styled(RRNavLink)`
   transition: background-color 0.3s;
 
   &:hover {
-    background-color: #3a5773; /* Cor de hover */
+    background-color: #3a5773; 
   }
 
   &.active {
     background-color: #3a5773;
-    color: #fff; /* Cor branca para o item ativo */
+    color: #fff; 
   }
 
   &:not(:last-child) {
     margin-right: 1rem;
   }
+
+  
+
 `;
