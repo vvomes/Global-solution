@@ -7,3 +7,8 @@ Comandos para visualizar o projeto:
 Para instalar as dependências: npm install
 
 Para subir o servidor da aplicação: npm start
+
+Desenvolvedores:
+- Jeferson Noronha - RM96999
+- Leonardo Ciccarello - RM96582
+- Willian Gomes - RM96796
