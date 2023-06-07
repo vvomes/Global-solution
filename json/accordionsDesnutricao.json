@@ -1,0 +1,27 @@
+[
+    {
+      "id": 1,
+      "title":"Emaciação Infantil",
+      "content1":"A emaciação infantil é uma grave preocupação que afeta milhões de crianças em todo o mundo. Em 2020, a prevalência dessa condição foi de 6,7%, ultrapassando mais que o dobro da meta global estabelecida para 2030, que é de menos de 3%. A emaciação é caracterizada pela magreza extrema das crianças, resultando em um aumento significativo do risco de mortalidade.",
+      "content2":" É um quadro de desnutrição aguda que compromete a saúde e o bem-estar das crianças. A falta de acesso a alimentos adequados e uma dieta balanceada contribui para o desenvolvimento dessa condição, enfraquecendo o sistema imunológico e aumentando o risco de doenças e complicações graves, inclusive o risco de morte."
+    },
+    {
+    "id": 2,
+    "title":"Caquexia",
+    "content1":"Uma condição preocupante que afeta um número significativo de crianças menores de cinco anos. Em 2020, aproximadamente 6,7% das crianças foram diagnosticadas com caquexia, o que corresponde a cerca de 45,4 milhões de crianças em todo o mundo.",
+    "content2":"A caquexia caracterizada pelo baixo peso em relação à estatura da criança. Isso significa que essas crianças têm um peso corporal abaixo do esperado para a altura, indicando um estado de desnutrição crônica. Essa condição pode ter impactos negativos no crescimento físico e desenvolvimento geral das crianças, prejudicando sua saúde e bem-estar."
+    },
+    {
+    "id": 3,
+    "title":"Nanismo",
+    "content1":"O nanismo é uma condição em que as crianças apresentam baixa estatura em relação à idade. Existem várias causas para o nanismo, incluindo fatores genéticos, hormonais e nutricionais. Essa condição afeta crianças em todo o mundo e, de acordo com estimativas de 2020, cerca de 22% das crianças são afetadas pelo nanismo, o que corresponde a aproximadamente 149,2 milhões de crianças.",
+    "content2":"O desenvolvimento físico, cognitivo, emocional e social das crianças afetadas pelo nanismo pode ser impactado de maneiras significativas. Além das limitações físicas, como a baixa estatura, essas crianças enfrentam desafios emocionais e sociais decorrentes das diferenças de altura em relação aos seus pares. É crucial fornecer intervenções precoces e um apoio adequado para ajudar essas crianças a alcançarem seu pleno potencial de crescimento e desenvolvimento. Isso implica em abordar suas necessidades médicas, nutricionais e emocionais de forma abrangente, visando promover sua saúde geral, bem-estar emocional e inclusão social ao longo prazo."
+    },
+    {
+    "id": 4,
+    "title":"Retardo no Crescimento",
+    "content1":"O retardo de crescimento em crianças está diretamente relacionado à fome e à desnutrição. A fome crônica e a falta de acesso regular a alimentos adequados e nutritivos podem levar a um déficit calórico e de nutrientes essenciais, resultando em um crescimento comprometido.",
+    "content2":" A falta de nutrientes essenciais, como proteínas, vitaminas e minerais, interfere nos processos de crescimento e desenvolvimento do organismo. As crianças desnutridas não recebem os nutrientes necessários para sustentar um crescimento adequado, o que resulta em uma altura abaixo do esperado para a idade."
+    }
+  ]
+  
