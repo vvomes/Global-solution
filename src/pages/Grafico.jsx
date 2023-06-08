@@ -71,7 +71,7 @@ const Grafico = () => {
         setData(chartData);
         createChart(chartData, currentChart);
         setDisplayText(
-          'O gráfico acima representa o índice de desperdício de alimentos em países ao redor do mundo, no período de 2018 a 2022. Ele destaca a preocupante realidade do desperdício alimentar global e a necessidade de ações para combatê-lo.'
+          '.'
         );
       } catch (error) {
         console.log(error);
