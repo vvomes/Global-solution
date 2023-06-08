@@ -4,32 +4,38 @@ import styled from 'styled-components';
 import Header from '../components/Index/Header';
 import Footer from '../components/Index/Footer';
 
-import mapaMundial from '../components/img/mapa-mundo.jpg';
-import mapaBrasil from '../components/img/mapa-do-brasil-hi.png';
+import graficoImage from '../components/img/grafico.png';
 
 const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 60%;
+  width: 100%;
   min-height: 100vh;
-  margin: 0 auto;
   padding: 50px 0;
 `;
 
-const ChartContainer = styled.div`
+const ImageContainer = styled.div`
   width: 100%;
-  height: 100%;
-  background-image: url(${props => props.backgroundImage});
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
+  max-width: 100%;
+  height: 500px; 
+  margin-bottom: 20px;
+  overflow: hidden; 
+`;
+
+const Image = styled.img`
+  width: 100%;
+  height: auto;
+`;
+
+const ChartContainer = styled.div`
+  width: 50%;
 `;
 
 const Canvas = styled.canvas`
   width: 100%;
-  height: 100%;
+  height: auto;
 `;
 
 const ButtonContainer = styled.div`
@@ -43,12 +49,10 @@ const Button = styled.button`
 `;
 
 const TextContainer = styled.div`
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 `;
 
 const Text = styled.p`
-  font-size: 16px;
-  font-weight: 500;
   text-align: center;
 `;
 
@@ -58,7 +62,7 @@ const Grafico = () => {
   const [data, setData] = useState(null);
   const [chartInstance, setChartInstance] = useState(null);
   const [currentChart, setCurrentChart] = useState(1);
-  const [currentText, setCurrentText] = useState('fomeMundial');
+  const [displayText, setDisplayText] = useState('');
 
   useEffect(() => {
     const fetchData = async () => {
@@ -66,13 +70,16 @@ const Grafico = () => {
         const chartData = await fetchChartData();
         setData(chartData);
         createChart(chartData, currentChart);
+        setDisplayText(
+          'O gráfico acima representa o índice de desperdício de alimentos em países ao redor do mundo, no período de 2018 a 2022. Ele destaca a preocupante realidade do desperdício alimentar global e a necessidade de ações para combatê-lo.'
+        );
       } catch (error) {
         console.log(error);
       }
     };
 
     fetchData();
-  }, [currentChart]);
+  }, []);
 
   const fetchChartData = () => {
     return Promise.resolve({
@@ -80,18 +87,18 @@ const Grafico = () => {
       countries: ['Noruega', 'Canadá', 'Dinamarca', 'Austrália', 'Estados Unidos'],
       states: ['São Paulo', 'Rio de Janeiro', 'Minas Gerais', 'Bahia', 'Santa Catarina'],
       indices1: {
-        2018: [2000, 1500, 2000, 2500, 4000],
-        2019: [1200, 1700, 2200, 2700, 3200],
-        2020: [1400, 1900, 2400, 2900, 3400],
-        2021: [1600, 2100, 2600, 3100, 3600],
-        2022: [1800, 2300, 2800, 3300, 8800],
+        2018: [23000, 30000, 20000, 5000, 32000],
+        2019: [25000, 28000, 22000, 6000, 33000],
+        2020: [26000, 32000, 24000, 7000, 35000],
+        2021: [26000, 33000, 26000, 8000, 32000],
+        2022: [27000, 31500, 28000, 10000, 35000],
       },
       indices2: {
-        2018: [3000, 2500, 3000, 3500, 5000],
-        2019: [2200, 2700, 3200, 3700, 4200],
-        2020: [2400, 2900, 3400, 3900, 4400],
-        2021: [2600, 3100, 3600, 4100, 4600],
-        2022: [2800, 3300, 3800, 4300, 8800],
+        2018: [3000, 1500, 1200, 1900, 1000],
+        2019: [3200, 1700, 1200, 1700, 2200],
+        2020: [3400, 1900, 1400, 2900, 1400],
+        2021: [3600, 2100, 1600, 1100, 1600],
+        2022: [3200, 1300, 800, 1300, 1800],
       },
     });
   };
@@ -119,6 +126,8 @@ const Grafico = () => {
       },
       options: {
         indexAxis: 'y',
+        responsive: true,
+        maintainAspectRatio: false,
         scales: {
           x: {
             beginAtZero: true,
@@ -154,6 +163,11 @@ const Grafico = () => {
 
     const newChartInstance = new Chart(chartRef.current, chartConfig);
     setChartInstance(newChartInstance);
+    setDisplayText(
+      chartNumber === 1
+        ? 'O desperdício de alimentos no mundo é um problema grave e urgente que precisa ser enfrentado. Estima-se que um terço de toda a comida produzida para consumo humano seja desperdiçada, o que contribui para a fome global e representa um impacto ambiental significativo. Precisamos agir de forma coordenada, investindo em práticas sustentáveis, conscientização e educação sobre o aproveitamento integral dos alimentos, além de criar políticas e parcerias que incentivem a redução do desperdício. Juntos, podemos combater essa questão e garantir um futuro mais justo e sustentável para todos..'
+        : 'O desperdício de alimentos no Brasil é um problema sério e urgente, com cerca de 26 milhões de toneladas de comida sendo perdidas anualmente. Isso tem impactos sociais, econômicos e ambientais significativos. É necessário investir em tecnologias, conscientização e políticas públicas para reduzir o desperdício. Ações como doações de alimentos, consumo responsável e parcerias colaborativas são fundamentais para combater essa questão e garantir um futuro mais sustentável para o país..'
+    );
   };
 
   const handleYearChange = (event) => {
@@ -175,57 +189,73 @@ const Grafico = () => {
 
   const handleChartChange = (chartNumber) => {
     setCurrentChart(chartNumber);
-    setCurrentText(chartNumber === 1 ? 'fomeMundial' : 'fomeNacional');
+    const updatedData = {
+      ...data,
+      indices1: {
+        ...data.indices1,
+      },
+      indices2: {
+        ...data.indices2,
+      },
+    };
+    setDisplayText(
+      chartNumber === 1
+        ? 'O desperdício de alimentos no mundo é um problema grave e urgente que precisa ser enfrentado. Estima-se que um terço de toda a comida produzida para consumo humano seja desperdiçada, o que contribui para a fome global e representa um impacto ambiental significativo. Precisamos agir de forma coordenada, investindo em práticas sustentáveis, conscientização e educação sobre o aproveitamento integral dos alimentos, além de criar políticas e parcerias que incentivem a redução do desperdício. Juntos, podemos combater essa questão e garantir um futuro mais justo e sustentável para todos..'
+        : 'O desperdício de alimentos no Brasil é um problema sério e urgente, com cerca de 26 milhões de toneladas de comida sendo perdidas anualmente. Isso tem impactos sociais, econômicos e ambientais significativos. É necessário investir em tecnologias, conscientização e políticas públicas para reduzir o desperdício. Ações como doações de alimentos, consumo responsável e parcerias colaborativas são fundamentais para combater essa questão e garantir um futuro mais sustentável para o país..'
+    );
+    updateChart(updatedData, data.years[0]);
   };
 
   const updateChart = (data, year) => {
     if (chartInstance) {
-      const dataset = chartInstance.data.datasets[0];
-      const chartNumber = currentChart;
-      dataset.data = data[`indices${chartNumber}`][year];
+      chartInstance.data.labels = currentChart === 1 ? data.countries : data.states;
+      chartInstance.data.datasets[0].data = data[`indices${currentChart}`][year];
       chartInstance.update();
     }
   };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const chartData = await fetchChartData();
+        setData(chartData);
+        createChart(chartData, currentChart);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchData();
+  }, [currentChart]); // Update the chart whenever the currentChart value changes
 
   return (
     <>
       <Header />
       <Container>
+        <ImageContainer>
+          <Image src={graficoImage} alt="Gráfico" />
+        </ImageContainer>
+        <TextContainer>
+          <Text>{displayText}</Text>
+        </TextContainer>
         <ButtonContainer>
-          <Button onClick={() => handleChartChange(1)}>Mundial</Button>
-          <Button onClick={() => handleChartChange(2)}>Nacional</Button>
+          <Button onClick={() => handleChartChange(1)}>Gráfico de Países</Button>
+          <Button onClick={() => handleChartChange(2)}>Gráfico de Estados</Button>
         </ButtonContainer>
         <TextContainer>
-          {currentText === 'fomeMundial' && (
-            <Text>
-              A fome mundial e o desperdício de alimentos são questões interligadas que demandam atenção urgente. Enquanto
-              milhões de pessoas enfrentam diariamente a falta de alimentos suficientes para suprir suas necessidades
-              básicas, uma quantidade alarmante de alimentos é desperdiçada ao redor do mundo. O desperdício ocorre em
-              todas as etapas da cadeia alimentar, desde a produção e colheita até o consumo final.
-            </Text>
-          )}
-          {currentText === 'fomeNacional' && (
-            <Text>
-              No âmbito nacional, também enfrentamos desafios significativos em relação à fome e ao desperdício de
-              alimentos. É fundamental destacar as peculiaridades e características específicas do nosso país para
-              desenvolver soluções adequadas. Através de políticas públicas, conscientização e ações coletivas, podemos
-              combater a fome e reduzir o desperdício de alimentos em todas as regiões do Brasil.
-            </Text>
-          )}
+          <Text>Selecione o ano:</Text>
         </TextContainer>
-        <ChartContainer backgroundImage={currentChart === 1 ? mapaMundial : mapaBrasil}>
+        <select onChange={handleYearChange}>
+          {data &&
+            data.years.map((year) => (
+              <option key={year} value={year}>
+                {year}
+              </option>
+            ))}
+        </select>
+        <ChartContainer>
           <Canvas ref={currentChart === 1 ? chart1Ref : chart2Ref}></Canvas>
         </ChartContainer>
-        <ButtonContainer>
-          <select onChange={handleYearChange}>
-            {data &&
-              data.years.map((year) => (
-                <option key={year} value={year}>
-                  {year}
-                </option>
-              ))}
-          </select>
-        </ButtonContainer>
       </Container>
       <Footer />
     </>
