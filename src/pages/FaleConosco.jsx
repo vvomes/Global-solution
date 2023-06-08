@@ -1,8 +1,26 @@
 import Header from "../components/Index/Header";
 
-
 import React, { useState } from 'react';
 import styled from 'styled-components';
+
+function validateFullName(fullName) {
+  const words = fullName.split(' ');
+  return words.length >= 2;
+}
+
+function validateEmail(email) {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(email);
+}
+
+function validateAge(age) {
+  return parseInt(age) > 0;
+}
+
+function validatePhone(phone) {
+  const phoneRegex = /^[0-9]{10,11}$/;
+  return phoneRegex.test(phone);
+}
 
 export default function FaleConosco() {
   const [formData, setFormData] = useState({
@@ -144,4 +162,4 @@ const SubmitButton = styled.button`
   &:hover {
     background-color: #0056b3;
   }
-`;
+}`;
